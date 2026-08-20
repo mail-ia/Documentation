@@ -1,11 +1,39 @@
 # Instrucciones y Protocolo Operativo para el Agente IA de Desarrollo
 
 > **Destinatario:** Agentes de Inteligencia Artificial (Antigravity, Claude Code, Cursor, Windsurf, Copilot, etc.) y Desarrolladores Frontend.  
-> **Objetivo:** Establecer el protocolo riguroso de implementación, validación, pruebas obligatorias y criterios de aceptación (Definition of Done) antes de cerrar cualquier tarea.
+> **Repositorio Oficial:** `https://github.com/mail-ia/mail-web.git`  
+> **Estrategia de Trabajo:** Fork + Gitflow desde `main` + Conventional Commits.  
+> **Objetivo:** Establecer el protocolo riguroso de implementación, gestión de ramas, validación, pruebas obligatorias y criterios de aceptación (Definition of Done) antes de cerrar cualquier tarea.
 
 ---
 
-## 1. Mandamientos No Negociables del Código
+## 1. Repositorio, Fork y Convención de Ramas (Gitflow)
+
+1. **Origen del Repositorio:**
+   * El repositorio base es [`https://github.com/mail-ia/mail-web.git`](https://github.com/mail-ia/mail-web.git).
+   * El agente o desarrollador debe trabajar sobre un **Fork** de este repositorio.
+   * `upstream` debe apuntar al repositorio oficial `https://github.com/mail-ia/mail-web.git`.
+
+2. **Creación de Ramas (Gitflow):**
+   * Toda rama de funcionalidad se crea **a partir de `main`** actualizado:
+     ```bash
+     git checkout main
+     git pull upstream main
+     git checkout -b feature/week-1-task-<num>-<nombre-corto>
+     ```
+   * Ejemplos de ramas de Semana 1:
+     * `feature/week-1-task-01-login-auth`
+     * `feature/week-1-task-02-layout-navigation`
+     * `feature/week-1-task-03-chat-ai-live-preview`
+
+3. **Commits Estándar (Conventional Commits):**
+   * Todo commit debe seguir el formato: `<type>(<scope>): <description>` (ej. `feat(auth): add reactive login form`, `test(chat): add e2e playwright test`).
+   * Tipos permitidos: `feat`, `fix`, `test`, `refactor`, `style`, `docs`, `chore`.
+   * Para más detalles, consultar la [Guía de Gitflow y Commits](./git-workflow.md).
+
+---
+
+## 2. Mandamientos No Negociables del Código
 
 Todo código generado debe cumplir sin excepciones con las siguientes restricciones:
 
@@ -32,18 +60,18 @@ Todo código generado debe cumplir sin excepciones con las siguientes restriccio
 
 ---
 
-## 2. Flujo de Trabajo Operativo del Agente
+## 3. Flujo de Trabajo Operativo del Agente
 
 Cuando se asigne una tarea de desarrollo, el agente debe seguir obligatoriamente este orden secuencial:
 
 ```text
 ┌────────────────────────────────────────────────────────┐
-│ 1. Análisis de Requisitos & Contratos de Datos (DTOs) │
+│ 1. Fork & Rama Gitflow a partir de main                │
 └──────────────────────────┬─────────────────────────────┘
                            │
                            ▼
 ┌────────────────────────────────────────────────────────┐
-│ 2. Definición de Modelos e Interfaces TypeScript       │
+│ 2. Análisis de Requisitos & Contratos de Datos (DTOs) │
 └──────────────────────────┬─────────────────────────────┘
                            │
                            ▼
@@ -73,24 +101,24 @@ Cuando se asigne una tarea de desarrollo, el agente debe seguir obligatoriamente
                            │
                            ▼
 ┌────────────────────────────────────────────────────────┐
-│ 8. Entrega Final con Evidencia y Reporte de Pruebas    │
+│ 8. Commit Convencional & Entrega con Evidencia         │
 └────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 3. Protocolo de Pruebas Obligatorio (Definition of Done - DoD)
+## 4. Protocolo de Pruebas Obligatorio (Definition of Done - DoD)
 
 > [!CRITICAL]
 > **Ninguna tarea se considerará finalizada ni entregada hasta que todas las pruebas hayan sido ejecutadas y aprobadas exitosamente.**
 > El agente debe presentar la evidencia de la ejecución de pruebas en su reporte final.
 
-### 3.1 Pruebas Unitarias Requeridas
+### 4.1 Pruebas Unitarias Requeridas
 * **Servicios de Estado & API Mocks:** Cobertura mínima del **80%**. Deben verificarse escenarios de éxito, fallo, simulación de retardo y actualización reactiva de Signals.
 * **Componentes Dumb:** Verificar que rendericen correctamente los datos pasados por `input()` y que emitan los eventos correctos en `output()`.
 * **Validadores de Formularios:** Cobertura del 100% en reglas de validación (email válido, longitud de contraseñas, campos requeridos).
 
-### 3.2 Pruebas End-to-End (Playwright)
+### 4.2 Pruebas End-to-End (Playwright)
 Para cada funcionalidad de la Semana 1, deben existir y ejecutarse pruebas E2E automatizadas:
 * **Flujo de Login:** Autenticación con credenciales válidas, rechazo con credenciales erróneas, navegación a `/campaigns/new`.
 * **Flujo de Navegación:** Renderizado de la Sidebar, presencia del logotipo, colapso responsivo y navegación entre rutas activas.
@@ -98,9 +126,9 @@ Para cada funcionalidad de la Semana 1, deben existir y ejecutarse pruebas E2E a
 
 ---
 
-## 4. Checklist de Validación del Quality Gate
+## 5. Checklist de Validación del Quality Gate
 
-Antes de emitir el reporte final, el agente debe ejecutar localmente los siguientes comandos y validar su salida:
+Antes de emitir el reporte final o abrir PR, el agente debe ejecutar localmente los siguientes comandos y validar su salida:
 
 ```bash
 # 1. Verificación de Tipos TypeScript (Cero errores)
@@ -121,13 +149,14 @@ npm run build
 
 ---
 
-## 5. Formato del Reporte de Entrega del Agente
+## 6. Formato del Reporte de Entrega del Agente
 
 Al finalizar una tarea, el agente debe generar un reporte estructurado con las siguientes secciones:
 
 1. **Resumen de la Tarea:** Descripción clara de lo implementado.
-2. **Archivos Creados / Modificados:** Lista de rutas absolutas con links markdown.
-3. **Evidencia de Pruebas Unitarias:** Resumen de suites ejecutadas y porcentaje de cobertura.
-4. **Evidencia de Pruebas E2E:** Estado de los tests de Playwright (Passed / Failed).
-5. **Verificación de Calidad:** Confirmación de que `tsc`, `lint` y `build` finalizaron con código de salida `0`.
-6. **Capturas o Descripción de Comportamiento Visual:** Validación de responsividad y paleta de colores.
+2. **Rama y Commits:** Nombre de la rama Gitflow y lista de Conventional Commits realizados.
+3. **Archivos Creados / Modificados:** Lista de rutas absolutas con links markdown.
+4. **Evidencia de Pruebas Unitarias:** Resumen de suites ejecutadas y porcentaje de cobertura.
+5. **Evidencia de Pruebas E2E:** Estado de los tests de Playwright (Passed / Failed).
+6. **Verificación de Calidad:** Confirmación de que `tsc`, `lint` y `build` finalizaron con código de salida `0`.
+7. **Capturas o Descripción de Comportamiento Visual:** Validación de responsividad y paleta de colores.

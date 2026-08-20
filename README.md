@@ -7,6 +7,7 @@ Para consultar la lista completa de documentos y su descripción detallada, cons
 ## 🚀 Acceso Rápido
 
 * **Índice General:** [`index.md`](./index.md)
+* **Flujo Git, Fork & Commits:** [`rules/git-workflow.md`](./rules/git-workflow.md)
 * **Reglas de Angular:** [`rules/angular-rules.md`](./rules/angular-rules.md)
 * **Instrucciones para el Agente IA:** [`rules/agent-instructions.md`](./rules/agent-instructions.md)
 * **Seguridad & Diseño UI:** [`rules/security-and-design.md`](./rules/security-and-design.md)

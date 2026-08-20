@@ -17,6 +17,7 @@ Documentation/
 │   ├── business.md                            # Contexto estratégico, modelo de negocio y plan Fast-Track 21 días
 │   └── developer.md                           # Arquitectura técnica global (NestJS + Angular), DDD y Clean Architecture
 ├── rules/
+│   ├── git-workflow.md                        # Estrategia de Fork, Gitflow desde main y Conventional Commits
 │   ├── angular-rules.md                       # Estándares de Angular (v18/19+), Standalone, Signals, Smart/Dumb pattern
 │   ├── agent-instructions.md                  # Protocolo operativo para el agente IA, límites de complejidad y Quality Gate
 │   ├── security-and-design.md                 # Seguridad XSS (Iframe Sandbox), paleta Claude y pautas de diseño UI/UX
@@ -39,7 +40,8 @@ Documentation/
 * **[`context/business.md`](./context/business.md):** Describe el problema de negocio, la propuesta de valor SaaS B2B, los planes de precios ($0 a $199+), márgenes brutos (>85%), análisis de competidores y el cronograma de lanzamiento Fast-Track de 21 días (3 semanas).
 * **[`context/developer.md`](./context/developer.md):** Define la arquitectura global del sistema (Monolito Modular desacoplado), el stack oficial (NestJS + Neon PostgreSQL + Prisma + Redis/BullMQ + Angular), separación estricta de repositorios y modelos de dominio centrales.
 
-### 2. Reglas de Ingeniería & Frontend (`rules/`)
+### 2. Reglas de Ingeniería & Flujo Git (`rules/`)
+* **[`rules/git-workflow.md`](./rules/git-workflow.md):** Guía de trabajo con el repositorio oficial (`https://github.com/mail-ia/mail-web.git`), protocolo de Fork, creación de ramas Gitflow a partir de `main` (`feature/week-1-task-...`), y estándar de mensajes con **Conventional Commits** (`feat:`, `fix:`, `test:`, `refactor:`).
 * **[`rules/angular-rules.md`](./rules/angular-rules.md):** Guía técnica para desarrollo en Angular moderno (v18/19+): uso obligatorio de Standalone Components, reactividad con Signals (`signal`, `computed`, `input`, `output`), nuevo Control Flow (`@if`, `@for`, `@let`), inyección con `inject()`, y separación Smart Services vs Dumb Components.
 * **[`rules/agent-instructions.md`](./rules/agent-instructions.md):** Reglas estrictas para el Agente IA: Prohibición total de `any`, complejidad ciclomática máxima de 4, límite de 200-300 líneas por archivo, y el **protocolo obligatorio de ejecución de pruebas antes de dar por terminada cualquier tarea**.
 * **[`rules/security-and-design.md`](./rules/security-and-design.md):** Protocolo de seguridad frontend (tratamiento de HTML de IA como no confiable, renderizado en iframe sandbox, cero secretos en cliente) y sistema de diseño visual (paleta Claude `#0B1120`, `#131B2E`, `#5B7CFA` y pautas del logo).
